@@ -1,6 +1,6 @@
-# y-isa
+# geoenv24
 
-Presentation for the 3rd Young-ISA Meeting - Limerick, IE
+Presentation for the 15th International Conference on Geostatistics for Environmental Applications
 
 ## To reproduce this slides
 
@@ -13,11 +13,11 @@ Presentation for the 3rd Young-ISA Meeting - Limerick, IE
 2. Clone this repository with git (this is in a Linux/Unix terminal)
 
 ```bash
-$ git clone https://github.com/fernandomayer/y-isa.git
+$ git clone https://github.com/nagahamaVH/geoenv24.git
 ```
 
 Or download a zip file from
-[here](https://github.com/fernandomayer/y-isa/archive/refs/heads/main.zip).
+[here](https://github.com/nagahamaVH/geoenv24/archive/refs/heads/master.zip).
 
 3. Open R in this project and run
 
@@ -30,7 +30,7 @@ to install all the packages needed.
 4. Run
 
 ```r
-> rmarkdown::render("slides-y-isa.Rmd")
+> rmarkdown::render("river_nngp.Rmd")
 ```
 
-and see the slides in `slides-y-isa.html` in your browser.
+and see the slides in `river_nngp.html` in your browser.
