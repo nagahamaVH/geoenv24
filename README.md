@@ -1,6 +1,8 @@
 # geoenv24
 
-Presentation for the 15th International Conference on Geostatistics for Environmental Applications
+Presentation for the 15th International Conference on Geostatistics for Environmental Applications.
+
+Template using xaringan adapted from [fernandomayer](https://github.com/fernandomayer/y-isa).
 
 ## To reproduce this slides
 
