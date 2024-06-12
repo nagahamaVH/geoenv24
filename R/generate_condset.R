@@ -1,13 +1,12 @@
 library(dplyr)
 library(tidyr)
 library(ggplot2)
-library(plotly)
 
 source("./R/nearest_neighbor_functions.R")
 
 set.seed(125)
 n <- 20
-m <- 5
+m <- 3
 
 df <- tibble(x = runif(n), y = runif(n)) |>
   arrange(x) |>
@@ -52,5 +51,5 @@ p <- ggplot(df_plot, aes(x = x, y = y)) +
   geom_point(aes(fill = node_type, frame = frame), 
              filter(df_plot, node_type == "ref"), 
              size = size, shape = shape, alpha = alpha, fill = "green") +
-  labs(title = paste0("m = ", m))
+  labs(title = paste0("n = ", n, ", m = ", m))
 # saveRDS(p, "./data/conditional_set.rds")
