@@ -37,7 +37,7 @@ to install all the packages needed.
 4. Run
 
 ```r
-> rmarkdown::render("river_nngp.Rmd", output_file = "index")
+> rmarkdown::render("index.Rmd")
 ```
 
 and see the slides in `index.html` in your browser.

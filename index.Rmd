@@ -202,16 +202,87 @@ knitr::include_graphics("./figures/water_rain.png")
 ```
 
 ---
+count: false
 # Proposed model
 
-Let $\boldsymbol{y}_t$ represent the vector of water level measurements of available stations at time $t$. We define a model as:
+Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
+
+---
+count: false
+
+# Proposed model
+
+Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
+$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1} = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) + \boldsymbol{\epsilon}_t, \quad t > 1 \\
+\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I) \\
+\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right)$$
+
+---
+count: false
+
+# Proposed model
+
+Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
 
 $$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1} = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) + \boldsymbol{\epsilon}_t, \quad t > 1 \\
-\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right) \\
-\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I)$$
+\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I) \\
+\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right)$$
 
---
-- Extensions to spatially varying slopes: $\beta_1 \sim \mathcal{N}(b_0, \boldsymbol{\Sigma}_{\beta_1})$
+- Marginalised spatial latent field
+- Bayesian Inference and implementation using Stan
+
+---
+count: false
+
+# Proposed model
+
+Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
+
+$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1} = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) + \boldsymbol{\epsilon}_t, \quad t > 1 \\
+\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I) \\
+\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right)$$
+
+- Marginalised spatial latent field
+- Bayesian Inference and implementation using Stan
+
+<br><br>
+Extension to spatially varying slopes: $\beta_1 \sim \mathcal{N}(b_1, \boldsymbol{\Sigma}_{\beta_1})$
+
+---
+count: false
+
+# Proposed model
+
+Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
+
+$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1} = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) + \boldsymbol{\epsilon}_t, \quad t > 1 \\
+\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I) \\
+\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right)$$
+
+- Marginalised spatial latent field
+- Bayesian Inference and implementation using Stan
+
+<br><br>
+Extension to spatially varying slopes: $\beta_1 \sim \mathcal{N}(b_1, \boldsymbol{\Sigma}_{\beta_1})$ &nbsp;&nbsp;&nbsp; `r icons::icon_style(icons::fontawesome("times"), scale = 1, fill = "red")`
+
+---
+count: false
+
+# Proposed model
+
+Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
+
+.content-box-green[
+$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1} = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) + \boldsymbol{\epsilon}_t, \quad t > 1 \\
+\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I) \\
+\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right)$$
+]
+
+- Marginalised spatial latent field
+- Bayesian Inference and implementation using Stan
+
+<br><br>
+Extension to spatially varying slopes: $\beta_1 \sim \mathcal{N}(b_1, \boldsymbol{\Sigma}_{\beta_1})$ &nbsp;&nbsp;&nbsp; `r icons::icon_style(icons::fontawesome("times"), scale = 1, fill = "red")`
 
 ---
 # Posterior densities of model parameters
@@ -234,13 +305,6 @@ knitr::include_graphics("./figures/predicted_observed.png")
 knitr::include_graphics("./figures/ts_pred.png")
 ```
 
-
-.pull-right[
-<!-- TS -->
-]
-
-<!-- Exceedance probability -->
-
 ---
 # Future work
 
@@ -259,16 +323,24 @@ PrintBibliography(bib)
 ```
 
 ---
-class: sydney-blue, center, middle, inverse
+class: sydney-blue, middle, inverse
 # .white[Thank you!]
 
-.pull-left[
-<br>
-<br>
-<br>
-<br>
-.black[victor.nagahama.2022@mumail.ie]
-]
+.pull-left[.pull-down[
+<a href="mailto:victor.nagahama.2022@mumail.ie">
+.white[`r icons::fontawesome("paper-plane")` victor.nagahama.2022@mumail.ie]
+</a>
+
+<a href="https://nagahamavh.github.io/geoenv24">
+.white[`r icons::fontawesome("link")` nagahamavh.github.io/geoenv24]
+</a>
+
+<a href="http://github.com/nagahamaVH">
+.white[`r icons::fontawesome("github")` @nagahamaVH]
+</a>
+
+<br><br><br><br><br>
+]]
 
 .pull-right[
 ![Map](./figures/pred_map_time.gif)
