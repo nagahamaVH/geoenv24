@@ -193,6 +193,14 @@
       "Hash": "fa53ce256cd280f468c080a58ea5ba8c",
       "Requirements": []
     },
+    "crayon": {
+      "Package": "crayon",
+      "Version": "1.5.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e8a1e41acf02548751f45c718d55aa6a",
+      "Requirements": []
+    },
     "crosstalk": {
       "Package": "crosstalk",
       "Version": "1.2.1",
@@ -413,6 +421,31 @@
         "jsonlite",
         "mime",
         "openssl"
+      ]
+    },
+    "icons": {
+      "Package": "icons",
+      "Version": "0.2.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "mitchelloharawild",
+      "RemoteRepo": "icons",
+      "RemoteRef": "master",
+      "RemoteSha": "18ffa115f4053485900c4aed2ba7a67b07d9fbe9",
+      "Hash": "04c99d5fef12986b9bfc5f66c8e50d2f",
+      "Requirements": [
+        "cli",
+        "crayon",
+        "glue",
+        "htmltools",
+        "jsonlite",
+        "knitr",
+        "rappdirs",
+        "rlang",
+        "rstudioapi",
+        "stringr",
+        "xml2"
       ]
     },
     "isoband": {
@@ -714,6 +747,14 @@
         "xfun",
         "yaml"
       ]
+    },
+    "rstudioapi": {
+      "Package": "rstudioapi",
+      "Version": "0.16.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "96710351d642b70e8f02ddeb237c46a7",
+      "Requirements": []
     },
     "sass": {
       "Package": "sass",
