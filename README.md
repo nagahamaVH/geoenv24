@@ -4,7 +4,12 @@ Presentation for the 15th International Conference on Geostatistics for Environm
 
 Template using xaringan adapted from [fernandomayer](https://github.com/fernandomayer/y-isa).
 
-## To reproduce this slides
+## To view this presentation
+
+[nagahamavh.github.io/geoenv24](https://nagahamavh.github.io/geoenv24)
+
+
+## To reproduce this presentation
 
 1. Install `renv`
 
@@ -32,7 +37,7 @@ to install all the packages needed.
 4. Run
 
 ```r
-> rmarkdown::render("river_nngp.Rmd")
+> rmarkdown::render("river_nngp.Rmd", output_file = "index")
 ```
 
-and see the slides in `river_nngp.html` in your browser.
+and see the slides in `index.html` in your browser.
