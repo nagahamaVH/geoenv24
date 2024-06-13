@@ -78,16 +78,16 @@ background-size: 47%, 30%
 ---
 # Gaussian Process
 
-Consider a (Gaussian) spatial process $\boldsymbol{x}(\boldsymbol{s})$ in the spatial domain $\mathcal{S} \subset \mathcal{R}^d$ for the reference locations $\boldsymbol{s} = \{\mathcal{s}_1, \dots, \mathcal{s}_n\}$. The multivariate density can be factorized as  
+Consider a zero-centered spatial process $\boldsymbol{y}(\boldsymbol{s})$ in the spatial domain $\mathcal{S} \subset \mathcal{R}^d$ for the reference locations $\boldsymbol{s} = \{\mathcal{s}_1, \dots, \mathcal{s}_n\}$. The multivariate density can be factorized as  
 
-$$p(\boldsymbol{x}) = p(x(\boldsymbol{s}_1)) \prod_{i = 2}^n p(x(\boldsymbol{s}_i) \mid x(\boldsymbol{s}_1), \dots, x(\boldsymbol{s}_{i - 1}))$$
+$$p(\boldsymbol{y}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_i) \mid y(\boldsymbol{s}_1), \dots, y(\boldsymbol{s}_{i - 1}))$$
 
 --
 ## Nearest Neighbor Gaussian Process (NNGP)
 
 For a large number of spatial points, the conditional densities have superfluous information in a way it can be equivalent to condition by smaller sets `r Citep(bib, c("Vecchia1988", "Datta2016"))`.
 
-$$p(\boldsymbol{x}) \approx p(\widetilde{\boldsymbol{x}}) = p(x(\boldsymbol{s}_1)) \prod_{i = 2}^n p(x(\boldsymbol{s}_i) \mid x(N(\mathcal{s}_i)))$$
+$$p(\boldsymbol{y}) \approx p(\widetilde{\boldsymbol{y}}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_i) \mid y(N(\mathcal{s}_i)))$$
 where $N(\boldsymbol{s}_i)$ is the subset with at most $m$ nearest neighbors of $\boldsymbol{s}_i$ in $\boldsymbol{s}_i = \{\boldsymbol{s}_1, \dots, \boldsymbol{s}_{i - 1}\}$.
 
 ---
@@ -142,9 +142,9 @@ count: false
 1. Order the locations (according to one of the coordinates)
 2. Find the neighbor sets $N(\boldsymbol{s}_i)$
 3. Compute the conditional densities
-$$p(x(\boldsymbol{s}_i) \mid \boldsymbol{x}(N(\boldsymbol{s}_i))) \sim \mathcal{N} \left( \boldsymbol{a}_i \boldsymbol{x} \left( N(\boldsymbol{s}_i) \right), d_i \right) \\
-\boldsymbol{a}_i = \boldsymbol{C}_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)} \boldsymbol{C}^{-1}_{N(\boldsymbol{s}_i)} \\
-d_i = \boldsymbol{C}_{\boldsymbol{s}_i} - \boldsymbol{a}_i \boldsymbol{C}^\intercal_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)}$$
+$$p(y(\boldsymbol{s}_i) \mid \boldsymbol{y}(N(\boldsymbol{s}_i))) \sim \mathcal{N} \left( \boldsymbol{a}_i \boldsymbol{y} \left( N(\boldsymbol{s}_i) \right), d_i \right) \\
+\boldsymbol{a}_i = \boldsymbol{\Sigma}_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)} \boldsymbol{\Sigma}^{-1}_{N(\boldsymbol{s}_i)} \\
+d_i = \boldsymbol{\Sigma}_{\boldsymbol{s}_i} - \boldsymbol{a}_i \boldsymbol{\Sigma}^\intercal_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)}$$
 ]
 
 ---
@@ -160,11 +160,11 @@ count: false
 1. Order the locations (according to one of the coordinates)
 2. Find the neighbor sets $N(\boldsymbol{s}_i)$
 3. Compute the conditional densities
-$$p(x(\boldsymbol{s}_i) \mid \boldsymbol{x}(N(\boldsymbol{s}_i))) \sim \mathcal{N} \left( \boldsymbol{a}_i \boldsymbol{x} \left( N(\boldsymbol{s}_i) \right), d_i \right) \\
-\boldsymbol{a}_i = \boldsymbol{C}_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)} \boldsymbol{C}^{-1}_{N(\boldsymbol{s}_i)} \\
-d_i = \boldsymbol{C}_{\boldsymbol{s}_i} - \boldsymbol{a}_i \boldsymbol{C}^\intercal_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)}$$
-4. Obtain the approximation for $p(\boldsymbol{x})$
-$$p(\widetilde{\boldsymbol{x}}) = p(x(\boldsymbol{s}_1)) \prod_{i = 2}^n p(x(\boldsymbol{s}_i) \mid x(N(\mathcal{s}_i)))$$
+$$p(y(\boldsymbol{s}_i) \mid \boldsymbol{y}(N(\boldsymbol{s}_i))) \sim \mathcal{N} \left( \boldsymbol{a}_i \boldsymbol{y} \left( N(\boldsymbol{s}_i) \right), d_i \right) \\
+\boldsymbol{a}_i = \boldsymbol{\Sigma}_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)} \boldsymbol{\Sigma}^{-1}_{N(\boldsymbol{s}_i)} \\
+d_i = \boldsymbol{\Sigma}_{\boldsymbol{s}_i} - \boldsymbol{a}_i \boldsymbol{\Sigma}^\intercal_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)}$$
+4. Obtain the approximation for $p(\boldsymbol{y})$
+$$p(\widetilde{\boldsymbol{y}}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_i) \mid y(N(\mathcal{s}_i)))$$
 ]
 
 
@@ -181,31 +181,44 @@ count: false
 1. Order the locations (according to one of the coordinates)
 2. Find the neighbor sets $N(\boldsymbol{s}_i)$
 3. Compute the conditional densities
-$$p(x(\boldsymbol{s}_i) \mid \boldsymbol{x}(N(\boldsymbol{s}_i))) \sim \mathcal{N} \left( \boldsymbol{a}_i \boldsymbol{x} \left( N(\boldsymbol{s}_i) \right), d_i \right) \\
-\boldsymbol{a}_i = \boldsymbol{C}_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)} \boldsymbol{C}^{-1}_{N(\boldsymbol{s}_i)} \\
-d_i = \boldsymbol{C}_{\boldsymbol{s}_i} - \boldsymbol{a}_i \boldsymbol{C}^\intercal_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)}$$
-4. Obtain the approximation for $p(\boldsymbol{x})$
-$$p(\widetilde{\boldsymbol{x}}) = p(x(\boldsymbol{s}_1)) \prod_{i = 2}^n p(x(\boldsymbol{s}_i) \mid x(N(\mathcal{s}_i)))$$
+$$p(y(\boldsymbol{s}_i) \mid \boldsymbol{y}(N(\boldsymbol{s}_i))) \sim \mathcal{N} \left( \boldsymbol{a}_i \boldsymbol{y} \left( N(\boldsymbol{s}_i) \right), d_i \right) \\
+\boldsymbol{a}_i = \boldsymbol{\Sigma}_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)} \boldsymbol{\Sigma}^{-1}_{N(\boldsymbol{s}_i)} \\
+d_i = \boldsymbol{\Sigma}_{\boldsymbol{s}_i} - \boldsymbol{a}_i \boldsymbol{\Sigma}^\intercal_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)}$$
+4. Obtain the approximation for $p(\boldsymbol{y})$
+$$p(\widetilde{\boldsymbol{y}}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_i) \mid y(N(\mathcal{s}_i)))$$
 
-Computational cost: $\mathcal{O}(n \times m^2)$
+Computational cost of $\mathcal{O}(n \times m^2)$ instead of $\mathcal{O}(n^3)$
 ]
 
 ---
-# Ireland river data
+# Ireland river data: pre-processing
 
-## Pre-processing
 - Moving average of precipitation
-- Computed water level above the mean level (centering)
+- Response variable: water level above the mean level (centered variable)
 
-```{r, echo=FALSE, out.width='65%'}
+--
+
+- Out-of-sample evaluation:
+    - 20 random spatial locations with all times left out (interpolation)
+    - All spatial locations are missing on the last 3 days (forecasting)
+
+--
+
+```{r, echo=FALSE, out.width='55%'}
 knitr::include_graphics("./figures/water_rain.png")
 ```
 
 ---
 count: false
+
 # Proposed model
 
-Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
+Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$. 
+
+$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1}, \boldsymbol{X}_t, \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\mu}_t, \boldsymbol{\Sigma}^\star) \\
+\boldsymbol{\mu}_t = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) \\
+\boldsymbol{\Sigma}^\star = \boldsymbol{\Sigma} + \tau^2 \boldsymbol{I}\\
+\boldsymbol{\theta} = (\tau^2, \sigma^2, l, \beta_0, \beta_1, \phi)$$
 
 ---
 count: false
@@ -213,9 +226,14 @@ count: false
 # Proposed model
 
 Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
-$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1} = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) + \boldsymbol{\epsilon}_t, \quad t > 1 \\
-\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I) \\
-\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right)$$
+
+$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1}, \boldsymbol{X}_t, \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\mu}_t, \boldsymbol{\Sigma}^\star) \\
+\boldsymbol{\mu}_t = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) \\
+\boldsymbol{\Sigma}^\star = \boldsymbol{\Sigma} + \tau^2 \boldsymbol{I}\\
+\boldsymbol{\theta} = (\tau^2, \sigma^2, l, \beta_0, \beta_1, \phi)$$
+
+- In this model we integrated out the spatial process obtaining the marginal model
+- $\boldsymbol{\Sigma}$ is the covariance matrix from the spatial process which follows a NNGP prior
 
 ---
 count: false
@@ -224,11 +242,13 @@ count: false
 
 Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
 
-$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1} = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) + \boldsymbol{\epsilon}_t, \quad t > 1 \\
-\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I) \\
-\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right)$$
+$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1}, \boldsymbol{X}_t, \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\mu}_t, \boldsymbol{\Sigma}^\star) \\
+\boldsymbol{\mu}_t = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) \\
+\boldsymbol{\Sigma}^\star = \boldsymbol{\Sigma} + \tau^2 \boldsymbol{I}\\
+\boldsymbol{\theta} = (\tau^2, \sigma^2, l, \beta_0, \beta_1, \phi)$$
 
-- Marginalised spatial latent field
+- In this model we integrated out the spatial process obtaining the marginal model
+- $\boldsymbol{\Sigma}$ is the covariance matrix from the spatial process which follows a NNGP prior
 - Bayesian Inference and implementation using Stan
 
 ---
@@ -238,11 +258,13 @@ count: false
 
 Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
 
-$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1} = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) + \boldsymbol{\epsilon}_t, \quad t > 1 \\
-\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I) \\
-\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right)$$
+$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1}, \boldsymbol{X}_t, \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\mu}_t, \boldsymbol{\Sigma}^\star) \\
+\boldsymbol{\mu}_t = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) \\
+\boldsymbol{\Sigma}^\star = \boldsymbol{\Sigma} + \tau^2 \boldsymbol{I}\\
+\boldsymbol{\theta} = (\tau^2, \sigma^2, l, \beta_0, \beta_1, \phi)$$
 
-- Marginalised spatial latent field
+- In this model we integrated out the spatial process obtaining the marginal model
+- $\boldsymbol{\Sigma}$ is the covariance matrix from the spatial process which follows a NNGP prior
 - Bayesian Inference and implementation using Stan
 
 <br><br>
@@ -255,11 +277,13 @@ count: false
 
 Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
 
-$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1} = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) + \boldsymbol{\epsilon}_t, \quad t > 1 \\
-\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I) \\
-\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right)$$
+$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1}, \boldsymbol{X}_t, \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\mu}_t, \boldsymbol{\Sigma}^\star) \\
+\boldsymbol{\mu}_t = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) \\
+\boldsymbol{\Sigma}^\star = \boldsymbol{\Sigma} + \tau^2 \boldsymbol{I}\\
+\boldsymbol{\theta} = (\tau^2, \sigma^2, l, \beta_0, \beta_1, \phi)$$
 
-- Marginalised spatial latent field
+- In this model we integrated out the spatial process obtaining the marginal model
+- $\boldsymbol{\Sigma}$ is the covariance matrix from the spatial process which follows a NNGP prior
 - Bayesian Inference and implementation using Stan
 
 <br><br>
@@ -273,12 +297,14 @@ count: false
 Let $\boldsymbol{y}_t$ represent the vector of water level measurements from all available stations at time $t$.
 
 .content-box-green[
-$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1} = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) + \boldsymbol{\epsilon}_t, \quad t > 1 \\
-\boldsymbol{\epsilon}_t \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma} + \tau^2 I) \\
-\boldsymbol{y}_1 = \boldsymbol{X}_1 \boldsymbol{\beta} + \boldsymbol{\epsilon}_1, \quad \boldsymbol{\epsilon}_1 \sim N \left(\boldsymbol{0}, \frac{\boldsymbol{\Sigma} + \tau^2 I}{1 - \phi^2} \right)$$
+$$\boldsymbol{y}_t \mid \boldsymbol{y}_{t - 1}, \boldsymbol{X}_t, \boldsymbol{\theta} \sim \mathcal{N}(\boldsymbol{\mu}_t, \boldsymbol{\Sigma}^\star) \\
+\boldsymbol{\mu}_t = \boldsymbol{X}_t \boldsymbol{\beta} + \phi (\boldsymbol{y}_{t - 1} - \boldsymbol{X}_{t - 1} \boldsymbol{\beta}) \\
+\boldsymbol{\Sigma}^\star = \boldsymbol{\Sigma} + \tau^2 \boldsymbol{I}\\
+\boldsymbol{\theta} = (\tau^2, \sigma^2, l, \beta_0, \beta_1, \phi)$$
 ]
 
-- Marginalised spatial latent field
+- In this model we integrated out the spatial process obtaining the marginal model
+- $\boldsymbol{\Sigma}$ is the covariance matrix from the spatial process which follows a NNGP prior
 - Bayesian Inference and implementation using Stan
 
 <br><br>
