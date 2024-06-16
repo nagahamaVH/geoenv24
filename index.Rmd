@@ -1,6 +1,6 @@
 ---
 title: "Spatiotemporal prediction of daily river levels in Ireland using nearest neighbor Gaussian processes"
-author: Victor Nagahama<sup>1</sup> Niamh Cahill<sup>1</sup> James Sweeney<sup>2</sup>
+author: Victor Nagahama<sup>1</sup> James Sweeney<sup>2</sup> Niamh Cahill<sup>1</sup>
 institution: Maynooth University University of Limerick
 date: "19/06/2024"
 output:
@@ -44,8 +44,8 @@ background-size: 47%, 30%
 .center[.font200[.white[Spatiotemporal prediction of daily river levels in Ireland using nearest neighbor Gaussian processes]]]
 
 <br>
-.center[.black[
-.large[Victor Nagahama<sup>1</sup> Niamh Cahill<sup>1</sup> James Sweeney<sup>2</sup>]
+.center[.white[
+.large[Victor Nagahama<sup>1</sup> James Sweeney<sup>2</sup> Niamh Cahill<sup>1</sup>]
 
 .small[<sup>1</sup>Maynooth University <sup>2</sup>University of Limerick]
 
@@ -54,25 +54,28 @@ background-size: 47%, 30%
 ]]
 
 ---
-# Outline
-
-- Motivation
-- Nearest Neighbor Gaussian Process (NNGP)
-- Irish river data
-- Proposed model & results
-- Future work
----
-
+count: false
 # Motivation
+
 .pull-left[
 ![Map](./figures/wl_map_time.gif)
 ]
 
 .pull-right[
-- Area: 70,273 $\textrm{km}^2$
-- 301 river stations
-- 07/01/2022 to 06/04/2022 (90 daily records)
-- Auxiliary variables: precipitation
+]
+
+---
+count: false
+# Motivation
+
+.pull-left[
+![Map](./figures/wl_map_time.gif)
+]
+
+.pull-right[
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("./figures/cork_flood.png")
+```
 ]
 
 ---
@@ -191,20 +194,21 @@ Computational cost of $\mathcal{O}(n \times m^2)$ instead of $\mathcal{O}(n^3)$
 ]
 
 ---
-# Ireland river data: pre-processing
+# Ireland river data
 
-- Moving average of precipitation
+- 301 river stations
+- 07/01/2022 to 06/04/2022 (90 daily records)
 - Response variable: water level above the mean level (centered variable)
 
 --
 
 - Out-of-sample evaluation:
     - 20 random spatial locations with all times left out (interpolation)
-    - All spatial locations are missing on the last 3 days (forecasting)
+    - The last 3 days of all spatial locations were left out (forecast) 
 
 --
 
-```{r, echo=FALSE, out.width='55%'}
+```{r, echo=FALSE, out.width='50%'}
 knitr::include_graphics("./figures/water_rain.png")
 ```
 
