@@ -90,7 +90,7 @@ $$p(\boldsymbol{y}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_
 
 For a large number of spatial points, the conditional densities have superfluous information in a way it can be equivalent to condition by smaller sets `r Citep(bib, c("Vecchia1988", "Datta2016"))`.
 
-$$p(\boldsymbol{y}) \approx p(\widetilde{\boldsymbol{y}}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_i) \mid y(N(\mathcal{s}_i)))$$
+$$p(\boldsymbol{y}) \approx p(\widetilde{\boldsymbol{y}}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_i) \mid \boldsymbol{y}(N(\mathcal{s}_i)))$$
 where $N(\boldsymbol{s}_i)$ is the subset with at most $m$ nearest neighbors of $\boldsymbol{s}_i$ in $\boldsymbol{s}_i = \{\boldsymbol{s}_1, \dots, \boldsymbol{s}_{i - 1}\}$.
 
 ---
@@ -104,7 +104,7 @@ plot_cond_set <- readRDS("./data/conditional_set.rds")
 ```{r, plot_cond_set, cache=TRUE}
 ggplotly(plot_cond_set, height = 520, width = 500) |>
   animation_opts(
-    frame = 1500,
+    frame = 1300,
     transition = 0,
     redraw = FALSE
   ) |>
@@ -167,7 +167,7 @@ $$p(y(\boldsymbol{s}_i) \mid \boldsymbol{y}(N(\boldsymbol{s}_i))) \sim \mathcal{
 \boldsymbol{a}_i = \boldsymbol{\Sigma}_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)} \boldsymbol{\Sigma}^{-1}_{N(\boldsymbol{s}_i)} \\
 d_i = \boldsymbol{\Sigma}_{\boldsymbol{s}_i} - \boldsymbol{a}_i \boldsymbol{\Sigma}^\intercal_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)}$$
 4. Obtain the approximation for $p(\boldsymbol{y})$
-$$p(\widetilde{\boldsymbol{y}}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_i) \mid y(N(\mathcal{s}_i)))$$
+$$p(\widetilde{\boldsymbol{y}}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_i) \mid \boldsymbol{y}(N(\mathcal{s}_i)))$$
 ]
 
 
@@ -188,7 +188,7 @@ $$p(y(\boldsymbol{s}_i) \mid \boldsymbol{y}(N(\boldsymbol{s}_i))) \sim \mathcal{
 \boldsymbol{a}_i = \boldsymbol{\Sigma}_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)} \boldsymbol{\Sigma}^{-1}_{N(\boldsymbol{s}_i)} \\
 d_i = \boldsymbol{\Sigma}_{\boldsymbol{s}_i} - \boldsymbol{a}_i \boldsymbol{\Sigma}^\intercal_{\boldsymbol{s}_i, N(\boldsymbol{s}_i)}$$
 4. Obtain the approximation for $p(\boldsymbol{y})$
-$$p(\widetilde{\boldsymbol{y}}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_i) \mid y(N(\mathcal{s}_i)))$$
+$$p(\widetilde{\boldsymbol{y}}) = p(y(\boldsymbol{s}_1)) \prod_{i = 2}^n p(y(\boldsymbol{s}_i) \mid \boldsymbol{y}(N(\mathcal{s}_i)))$$
 
 Computational cost of $\mathcal{O}(n \times m^2)$ instead of $\mathcal{O}(n^3)$
 ]
